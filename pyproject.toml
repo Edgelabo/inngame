@@ -1,0 +1,59 @@
+[project]
+name = "naruto-hand-sign-detection"
+version = "0.1.0"
+description = "NARUTO Hand Sign Detection with AI - Desktop and Web Application"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "opencv-python>=4.5.0",
+    "numpy>=1.21.0",
+    "onnxruntime>=1.10.0",
+    "pillow>=8.0.0",
+    "fastapi>=0.68.0",
+    "uvicorn[standard]>=0.15.0",
+    "websockets>=10.0",
+    "python-multipart>=0.0.5",
+]
+
+[project.optional-dependencies]
+gpu = ["onnxruntime-gpu>=1.10.0"]
+dev = [
+    "pytest>=6.0",
+    "black>=21.0",
+    "flake8>=3.9",
+    "mypy>=0.910",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["."]
+exclude = [
+    "*.pyc",
+    "__pycache__",
+    ".git",
+    ".gitignore",
+    "*.md",
+    "LICENSE",
+    "_legacy",
+    "post_process_gen_tools",
+    "docs",
+]
+
+[tool.hatch.build]
+include = [
+    "*.py",
+    "model/**/*",
+    "setting/**/*",
+    "utils/**/*",
+]
+
+[tool.uv]
+dev-dependencies = [
+    "pytest>=6.0",
+    "black>=21.0",
+    "flake8>=3.9",
+    "mypy>=0.910",
+]
